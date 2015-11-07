@@ -1,5 +1,6 @@
 package com.example.coolweather.activity;
 
+import com.example.coolweather.service.AutoUpdateService;
 import com.example.coolweather.util.HttpCallbackListener;
 import com.example.coolweather.util.HttpUtil;
 import com.example.coolweather.util.Utility;
@@ -53,6 +54,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	requestWindowFeature(Window.FEATURE_NO_TITLE);
 	setContentView(com.example.coolweather.R.layout.weather_layout);
 	//初始化个控件
+	
 	weatherInfoLayout=(LinearLayout)findViewById
 			(com.example.coolweather.R.id.weather_info_layout);
 	
@@ -181,6 +183,12 @@ public class WeatherActivity extends Activity implements OnClickListener{
 			currentDateText.setText(prefs.getString("current_date", ""));
 			weatherInfoLayout.setVisibility(View.VISIBLE);
 			cityNameText.setVisibility(View.VISIBLE);
+			
+			
+			//开启自动更新服务
+			
+			Intent intent=new Intent(this,AutoUpdateService.class);
+			startService(intent);
 			
 		}
 	
